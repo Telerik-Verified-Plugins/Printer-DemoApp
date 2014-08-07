@@ -30,7 +30,7 @@
         </div>
         <h3>Printer Plugin Demo</h3>
         <p>
-            The Printer plugin..
+            The Printer plugin allows you to wirelessly print any DOM object on a page.
         </p>
         <p>
             Custom plugins don't work in the simulator and the AppBuilder companion app,
@@ -47,15 +47,19 @@
         <div class="demo">
             <h3 class="hassubtitle">Can we print?</h3>
             <div class="subtitle">
-                TODO explain the semantics
+                Any modern iOS device is capable of using AirPrint to find connected printers. On Android though the app needs to run on 4.4 (KitKat) or higher.
             </div>
             <button data-role="button" class="button" data-bind="click: checkAvailable">Check availability</button>
             
-            <h3 class="hassubtitle">Printing</h3>
-            <div class="subtitle">
-                Maybe pass different things to the plugin
-            </div>
-            <button data-role="button" class="button" data-bind="click: print">Print</button>
+            <h3>Printing a page</h3>
+            <button data-role="button" class="button" data-bind="click: printThisPage">Print this page</button>
+
+            <h3>Printing part of a page (iOS only)</h3>
+            <button data-role="button" class="button" data-bind="click: printParagraph">Print the paragraph below</button>
+
+            <p id="printParagraph">
+                Hey there <strong>buddy</strong>, this is <span style="text-decoration:underline">underlined</span>.
+            </p>
         </div>
     </div>
 

@@ -7,18 +7,38 @@
         checkAvailable: function () {
             if (!this.checkSimulator()) {
                 window.plugin.printer.isServiceAvailable(
-                    function (isAvailable) {
-                        alert(isAvailable ? 'Service is available' : 'Service not available');
+                    function (isAvailable, installedAppIds) {
+                        if (installedAppIds != null) {
+                            // this will be set on Android only
+	                        alert('The following print apps are installed on your device:\n\n' + installedAppIds.join(',\n'));
+                        } else {
+	                        alert(isAvailable ? 'Service is available' : 'Service not available');
+                        }
                     }
                 );
             }
         },
 
-        print: function () {
+        printThisPage: function () {
             if (!this.checkSimulator()) {
-                var printThis = document.body;
-                // TODO second argument: options, see readme
-                window.plugin.printer.print(printThis);
+                // note: for the layout to look nice on iOS you need to include all <style> rules inside the printed html
+                window.plugin.printer.print(
+                    document.body,
+                    {}, // options, not currently used
+                    function(msg) {console.log('ok: ' + msg)},
+                    function(msg) {alert('error: ' + msg)}
+                );
+            }
+        },
+
+        printParagraph: function () {
+            if (!this.checkSimulator()) {
+                window.plugin.printer.print(
+                    document.getElementById('printParagraph').innerHTML,
+                    {}, // options, not currently used
+                    function(msg) {console.log('ok: ' + msg)},
+                    function(msg) {alert('error: ' + msg)}
+                );
             }
         },
 
