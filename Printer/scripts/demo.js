@@ -7,13 +7,8 @@
         checkAvailable: function () {
             if (!this.checkSimulator()) {
                 window.plugin.printer.isServiceAvailable(
-                    function (isAvailable, installedAppIds) {
-                        if (installedAppIds != null) {
-                            // this will be set on Android only
-	                        alert('The following print apps are installed on your device:\n\n' + installedAppIds.join(',\n'));
-                        } else {
-	                        alert(isAvailable ? 'Service is available' : 'Service not available');
-                        }
+                    function (isAvailable) {
+                        alert(isAvailable ? 'Service is available' : 'Service not available');
                     }
                 );
             }
