@@ -6,7 +6,7 @@
 
         checkAvailable: function () {
             if (!this.checkSimulator()) {
-                window.plugin.printer.isServiceAvailable(
+                window.plugin.printer.isAvailable(
                     function (isAvailable) {
                         alert(isAvailable ? 'Service is available' : 'Service not available');
                     }
@@ -19,7 +19,26 @@
                 // note: for the layout to look nice on iOS you need to include all <style> rules inside the printed html
                 window.plugin.printer.print(
                     document.body,
-                    {}, // options, not currently used
+                    // options
+                    {
+                      graystyle: true
+                    },
+                    function(msg) {console.log('ok: ' + msg)},
+                    function(msg) {alert('error: ' + msg)}
+                );
+            }
+        },
+
+        printRemotePage: function () {
+            if (!this.checkSimulator()) {
+                // note: for the layout to look nice on iOS you need to include all <style> rules inside the printed html
+                window.plugin.printer.print(
+                    'http://www.telerik.com',
+                    // options
+                    {
+                      landscape: true,
+                      bounds:{ left:40, top:30, width:0, height:0 }
+                    },
                     function(msg) {console.log('ok: ' + msg)},
                     function(msg) {alert('error: ' + msg)}
                 );
@@ -30,7 +49,7 @@
             if (!this.checkSimulator()) {
                 window.plugin.printer.print(
                     document.getElementById('printParagraph').innerHTML,
-                    {}, // options, not currently used
+                    {}, // no options for this one
                     function(msg) {console.log('ok: ' + msg)},
                     function(msg) {alert('error: ' + msg)}
                 );
