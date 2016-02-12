@@ -27,10 +27,10 @@
     "cordova-plugin-crosswalk-webview@1.2.0",
     "cordova-plugin-device",
     "cordova-plugin-dialogs",
-    "cordova-plugin-network-information",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "cordova-plugin-vibration"
+    "cordova-plugin-vibration",
+    "de.appplant.cordova.plugin.printer@0.7.0"
   ],
   "AndroidPermissions": [
     "android.permission.VIBRATE",
